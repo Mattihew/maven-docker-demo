@@ -1,0 +1,12 @@
+version: '3'
+services:
+  tomcat:
+    build: .
+    environment:
+      JPDA_ADDRESS: 8000
+      JPDA_TRANSPORT: dt_socket
+      JPDA_OPTS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000
+    ports:
+      - '8080:8080'
+      - '8000:8000'
+    command: catalina.sh jpda run
